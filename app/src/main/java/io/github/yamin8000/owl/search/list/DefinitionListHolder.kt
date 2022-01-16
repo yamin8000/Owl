@@ -20,14 +20,15 @@
 
 package io.github.yamin8000.owl.search.list
 
-import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context.CLIPBOARD_SERVICE
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import io.github.yamin8000.owl.R
 import io.github.yamin8000.owl.databinding.DefinitionItemBinding
 import io.github.yamin8000.owl.model.Definition
+import io.github.yamin8000.owl.util.Utility.copyToClipBoard
 import io.github.yamin8000.owl.util.Utility.getShimmer
 import io.github.yamin8000.owl.util.ViewUtility.gone
 import io.github.yamin8000.owl.util.ViewUtility.handleViewDataNullity
@@ -37,18 +38,24 @@ class DefinitionListHolder(private val binding: DefinitionItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     init {
-        val clipboardManager =
-            binding.root.context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-        listOf(
-            binding.emojiText,
-            binding.typeText,
-            binding.exampleText,
-            binding.definitionText
-        ).forEach { textView ->
-            textView.setOnLongClickListener {
-                val clip = ClipData.newPlainText("", textView.text)
-                clipboardManager.setPrimaryClip(clip)
-                true
+        createLongClickListeners()
+    }
+
+    private fun createLongClickListeners() {
+        binding.root.context?.let { context ->
+            val clipboardManager = context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            listOf(
+                binding.emojiText,
+                binding.typeText,
+                binding.exampleText,
+                binding.definitionText
+            ).forEach { textView ->
+                textView.setOnLongClickListener {
+                    copyToClipBoard(textView.text.toString(), clipboardManager)
+                    Toast.makeText(context,
+                        context.getString(R.string.text_copied), Toast.LENGTH_SHORT).show()
+                    true
+                }
             }
         }
     }

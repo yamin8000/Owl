@@ -23,4 +23,5 @@
     <string name="app_crashed">مشکلی در برنامه پیش آمده، برای خروج اینجا را لمس کنید.</string>
     <string name="search_word">جستجوی کلمه</string>
     <string name="word_image">تصویر کلمه</string>
+    <string name="text_copied">متن کپی شد.</string>
 </resources>

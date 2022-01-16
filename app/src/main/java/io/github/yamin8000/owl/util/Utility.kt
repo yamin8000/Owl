@@ -20,6 +20,8 @@
 
 package io.github.yamin8000.owl.util
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.graphics.drawable.Drawable
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -62,5 +64,13 @@ object Utility {
         return ShimmerDrawable().apply {
             setShimmer(shimmer)
         }
+    }
+
+    fun copyToClipBoard(
+        text: String,
+        clipboardManager: ClipboardManager
+    ) {
+        val clip = ClipData.newPlainText(text, text)
+        clipboardManager.setPrimaryClip(clip)
     }
 }

@@ -20,15 +20,20 @@
 
 package io.github.yamin8000.owl.search
 
+import android.content.ClipboardManager
+import android.content.Context.CLIPBOARD_SERVICE
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.orhanobut.logger.Logger
+import io.github.yamin8000.owl.R
 import io.github.yamin8000.owl.databinding.FragmentSearchBinding
 import io.github.yamin8000.owl.network.APIs
 import io.github.yamin8000.owl.network.Web
 import io.github.yamin8000.owl.network.Web.async
 import io.github.yamin8000.owl.search.list.DefinitionListAdapter
 import io.github.yamin8000.owl.ui.BaseFragment
+import io.github.yamin8000.owl.util.Utility.copyToClipBoard
 import io.github.yamin8000.owl.util.Utility.handleCrash
 import io.github.yamin8000.owl.util.ViewUtility.handleViewDataNullity
 
@@ -38,6 +43,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>({ FragmentSearchBindi
         super.onViewCreated(view, savedInstanceState)
 
         try {
+            copyToClipboardLongClickListener()
+
             binding.searchInput.setStartIconOnClickListener {
                 val input = binding.searchEdit.text.toString()
 
@@ -59,6 +66,17 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>({ FragmentSearchBindi
             }
         } catch (e: Exception) {
             handleCrash(e)
+        }
+    }
+
+    private fun copyToClipboardLongClickListener() {
+        binding.pronunciationText.setOnLongClickListener {
+            context?.let {
+                val clipboardManager = it.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+                copyToClipBoard(binding.pronunciationText.text.toString(), clipboardManager)
+                Toast.makeText(it, getString(R.string.text_copied), Toast.LENGTH_SHORT).show()
+            }
+            true
         }
     }
 }
