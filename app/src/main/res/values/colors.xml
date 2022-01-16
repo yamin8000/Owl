@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~     Owl: an android app for Owlbot Dictionary API
+  ~     colors.xml Created by Yamin Siahmargooei at 2022/1/16
+  ~     This file is part of Owl.
+  ~     Copyright (C) 2022  Yamin Siahmargooei
+  ~
+  ~     Owl is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     Owl is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with Owl.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <color name="primaryColor">#00ebc7</color>
+    <color name="primaryLightColor">#69fffa</color>
+    <color name="primaryDarkColor">#00b896</color>
+    <color name="secondaryColor">#ff5470</color>
+    <color name="secondaryLightColor">#ff899e</color>
+    <color name="secondaryDarkColor">#c61145</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#000000</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

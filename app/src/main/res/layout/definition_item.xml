@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~     Owl: an android app for Owlbot Dictionary API
+  ~     definition_item.xml Created by Yamin Siahmargooei at 2022/1/16
+  ~     This file is part of Owl.
+  ~     Copyright (C) 2022  Yamin Siahmargooei
+  ~
+  ~     Owl is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     Owl is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with Owl.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:constraint_referenced_ids="wordImage,typeText,definitionText,exampleText,emojiText"
+            app:flow_verticalGap="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/wordImage"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/word_image"
+            android:scaleType="fitCenter"
+            tools:layout_editor_absoluteX="142dp"
+            tools:layout_editor_absoluteY="16dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/typeText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple_back"
+            android:checkable="false"
+            android:clickable="true"
+            android:focusable="true"
+            tools:layout_editor_absoluteX="174dp"
+            tools:layout_editor_absoluteY="144dp"
+            tools:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/definitionText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple_back"
+            android:checkable="false"
+            android:clickable="true"
+            android:focusable="true"
+            android:maxLines="10"
+            tools:layout_editor_absoluteX="174dp"
+            tools:layout_editor_absoluteY="223dp"
+            tools:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/exampleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple_back"
+            android:checkable="false"
+            android:clickable="true"
+            android:focusable="true"
+            android:maxLines="10"
+            tools:layout_editor_absoluteY="290dp"
+            tools:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/emojiText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:checkable="false"
+            android:clickable="true"
+            android:focusable="true"
+            tools:layout_editor_absoluteX="158dp"
+            tools:layout_editor_absoluteY="395dp"
+            tools:text="@tools:sample/lorem" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
