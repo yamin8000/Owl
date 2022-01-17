@@ -23,7 +23,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp">
+    android:layout_margin="4dp"
+    app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -44,7 +45,7 @@
         <ImageView
             android:id="@+id/wordImage"
             android:layout_width="0dp"
-            android:layout_height="150dp"
+            android:layout_height="200dp"
             android:contentDescription="@string/word_image"
             android:scaleType="fitCenter"
             tools:layout_editor_absoluteX="142dp"
@@ -59,6 +60,7 @@
             android:checkable="false"
             android:clickable="true"
             android:focusable="true"
+            android:minHeight="48dp"
             tools:layout_editor_absoluteX="174dp"
             tools:layout_editor_absoluteY="144dp"
             tools:text="@tools:sample/lorem" />
@@ -72,6 +74,7 @@
             android:clickable="true"
             android:focusable="true"
             android:maxLines="10"
+            android:minHeight="48dp"
             tools:layout_editor_absoluteX="174dp"
             tools:layout_editor_absoluteY="223dp"
             tools:text="@tools:sample/lorem" />
@@ -85,6 +88,8 @@
             android:clickable="true"
             android:focusable="true"
             android:maxLines="10"
+            android:minHeight="48dp"
+            tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="290dp"
             tools:text="@tools:sample/lorem" />
 
@@ -95,6 +100,7 @@
             android:checkable="false"
             android:clickable="true"
             android:focusable="true"
+            android:minHeight="48dp"
             tools:layout_editor_absoluteX="158dp"
             tools:layout_editor_absoluteY="395dp"
             tools:text="@tools:sample/lorem" />

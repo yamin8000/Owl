@@ -24,6 +24,7 @@ package io.github.yamin8000.owl.util
 
 import android.app.Application
 import android.util.Log
+import com.google.android.material.color.DynamicColors
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
@@ -38,6 +39,8 @@ class MyApp : Application() {
         try {
             if (BuildConfig.DEBUG)
                 prepareLogger()
+
+            DynamicColors.applyToActivitiesIfAvailable(this)
         } catch (e: Exception) {
             Log.d(LOG_TAG, "Application Failed!")
             if (BuildConfig.DEBUG)
