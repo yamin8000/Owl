@@ -21,35 +21,41 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="?attr/materialCardViewElevatedStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_margin="8dp"
     app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flow5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:constraint_referenced_ids="wordImage,typeText,definitionText,exampleText,emojiText"
+            android:padding="8dp"
+            app:constraint_referenced_ids="typeText,definitionText,exampleText,emojiText"
             app:flow_verticalGap="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/wordImage" />
 
         <ImageView
             android:id="@+id/wordImage"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:contentDescription="@string/word_image"
-            android:scaleType="fitCenter"
-            tools:layout_editor_absoluteX="142dp"
-            tools:layout_editor_absoluteY="16dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@+id/flow5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -59,8 +65,11 @@
             android:background="@drawable/ripple_back"
             android:checkable="false"
             android:clickable="true"
+            android:drawablePadding="4dp"
             android:focusable="true"
+            android:gravity="center_vertical"
             android:minHeight="48dp"
+            app:drawableStartCompat="@drawable/ic_category"
             tools:layout_editor_absoluteX="174dp"
             tools:layout_editor_absoluteY="144dp"
             tools:text="@tools:sample/lorem" />
@@ -72,9 +81,12 @@
             android:background="@drawable/ripple_back"
             android:checkable="false"
             android:clickable="true"
+            android:drawablePadding="4dp"
             android:focusable="true"
+            android:gravity="center_vertical"
             android:maxLines="10"
             android:minHeight="48dp"
+            app:drawableStartCompat="@drawable/ic_short_text"
             tools:layout_editor_absoluteX="174dp"
             tools:layout_editor_absoluteY="223dp"
             tools:text="@tools:sample/lorem" />
@@ -86,9 +98,12 @@
             android:background="@drawable/ripple_back"
             android:checkable="false"
             android:clickable="true"
+            android:drawablePadding="4dp"
             android:focusable="true"
+            android:gravity="center_vertical"
             android:maxLines="10"
             android:minHeight="48dp"
+            app:drawableStartCompat="@drawable/ic_text_snippet"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="290dp"
             tools:text="@tools:sample/lorem" />
@@ -99,8 +114,11 @@
             android:layout_height="wrap_content"
             android:checkable="false"
             android:clickable="true"
+            android:drawablePadding="4dp"
             android:focusable="true"
+            android:gravity="center_vertical"
             android:minHeight="48dp"
+            app:drawableStartCompat="@drawable/ic_emoji_symbols"
             tools:layout_editor_absoluteX="158dp"
             tools:layout_editor_absoluteY="395dp"
             tools:text="@tools:sample/lorem" />

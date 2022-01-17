@@ -26,21 +26,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/searchInput"
-            android:layout_width="match_parent"
+            style="@style/Widget.Material3.TextInputLayout.FilledBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/flow"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:startIconDrawable="@drawable/ic_search">
+            app:startIconDrawable="@drawable/ic_search"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/searchEdit"
@@ -53,51 +48,92 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <ProgressBar
+            android:id="@+id/searchProgress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:layout_editor_absoluteX="182dp"
+            tools:layout_editor_absoluteY="88dp"
+            tools:visibility="visible" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/basicInfoCard"
+            style="?attr/materialCardViewElevatedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:cardCornerRadius="10dp"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="16dp"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/basicInfoPlaceHolder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/word_and_pronunciation" />
+
+                <TextView
+                    android:id="@+id/pronunciationText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_back"
+                    android:checkable="false"
+                    android:clickable="true"
+                    android:drawablePadding="4dp"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:minHeight="48dp"
+                    app:drawableStartCompat="@drawable/ic_person_voice"
+                    tools:text="@tools:sample/lorem" />
+
+                <TextView
+                    android:id="@+id/wordText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_back"
+                    android:checkable="false"
+                    android:clickable="true"
+                    android:drawablePadding="4dp"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:minHeight="48dp"
+                    app:drawableStartCompat="@drawable/ic_form_text"
+                    tools:text="@tools:sample/lorem" />
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
             android:orientation="vertical"
-            app:constraint_referenced_ids="wordText,pronunciationText,recyclerView"
+            app:constraint_referenced_ids="searchInput,searchProgress,basicInfoCard,recyclerView"
             app:flow_verticalGap="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchInput" />
-
-        <TextView
-            android:id="@+id/wordText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ripple_back"
-            android:checkable="false"
-            android:clickable="true"
-            android:focusable="true"
-            android:minHeight="48dp"
-            tools:layout_editor_absoluteX="174dp"
-            tools:layout_editor_absoluteY="76dp"
-            tools:text="@tools:sample/lorem" />
-
-        <TextView
-            android:id="@+id/pronunciationText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ripple_back"
-            android:checkable="false"
-            android:clickable="true"
-            android:focusable="true"
-            android:minHeight="48dp"
-            tools:layout_editor_absoluteX="174dp"
-            tools:layout_editor_absoluteY="116dp"
-            tools:text="@tools:sample/lorem" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:spanCount="2"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="16dp"
             tools:listitem="@layout/definition_item" />

@@ -24,4 +24,10 @@
     <string name="search_word">جستجوی کلمه</string>
     <string name="word_image">تصویر کلمه</string>
     <string name="text_copied">متن کپی شد.</string>
+    <string name="general_net_error">خطا در برقراری ارتباط با سرور برنامه</string>
+    <string name="api_throttled">سرور برنامه تحت فشار است، لطفا چند دقیقه دیگر تلاش کنید</string>
+    <string name="definition_not_found">توضیحی برای این کلمه یافت نشد</string>
+    <string name="api_authorization_error">خطای احراز هویت با سرور برنامه</string>
+    <string name="please_wait">لطفا منتظر بمانید</string>
+    <string name="word_and_pronunciation">کلمه و تلفظ</string>
 </resources>
