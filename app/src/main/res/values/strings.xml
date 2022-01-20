@@ -30,4 +30,17 @@
     <string name="api_authorization_error">خطای احراز هویت با سرور برنامه</string>
     <string name="please_wait">لطفا منتظر بمانید</string>
     <string name="word_and_pronunciation">کلمه و تلفظ</string>
+    <string name="about">درباره</string>
+    <string name="settings">تنظیمات</string>
+    <string name="license_header">این برنامه تحت لایسنس GPLv3 است که توضیحات بیشتر در پایین موجود است.\nلینک سورس برنامه:\nhttps://github.com/yamin8000/Owl</string>
+    <string name="gplv3_image_description">لوگو پروانه برنامه GPLv3</string>
+    <string name="about_app">فرهنگ واژگان انگلیسی به انگلیسی جغد
+        \n
+        برگرفته از فرهنگ واژگان Owlbot
+        \n
+        اطلاعات بیشتر در اینجا:
+        https://owlbot.info
+        \n
+        این فرهنگ، اطلاعات واژگان را از جستجو در اینترنت پیدا میکند.
+    </string>
 </resources>

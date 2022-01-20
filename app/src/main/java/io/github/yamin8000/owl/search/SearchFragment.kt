@@ -25,6 +25,7 @@ import android.content.Context.CLIPBOARD_SERVICE
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.orhanobut.logger.Logger
 import io.github.yamin8000.owl.R
 import io.github.yamin8000.owl.databinding.FragmentSearchBinding
@@ -49,8 +50,24 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>({ FragmentSearchBindi
         try {
             copyToClipboardLongClickListener()
             binding.searchInput.setStartIconOnClickListener { searchWord() }
+            toolbarMenuHandler()
         } catch (e: Exception) {
             handleCrash(e)
+        }
+    }
+
+    private fun toolbarMenuHandler() {
+        binding.searchFragmentToolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.search_menu_about -> findNavController().navigate(R.id.action_searchFragment_to_aboutModal)
+                R.id.search_menu_settings -> {
+                    context?.let {
+                        Toast.makeText(it, "به زودی", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            }
+            true
         }
     }
 
@@ -79,7 +96,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>({ FragmentSearchBindi
             Toast.makeText(
                 it,
                 getString(R.string.general_net_error),
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_LONG
             ).show()
         }
         binding.searchProgress.gone()
@@ -106,7 +123,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>({ FragmentSearchBindi
             429 -> getString(R.string.api_throttled)
             else -> getString(R.string.general_net_error)
         }
-        context?.let { Toast.makeText(it, message, Toast.LENGTH_SHORT).show() }
+        context?.let { Toast.makeText(it, message, Toast.LENGTH_LONG).show() }
         binding.searchProgress.gone()
     }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~     Owl: an android app for Owlbot Dictionary API
-  ~     activity_main.xml Created by Yamin Siahmargooei at 2022/1/16
+  ~     search_fragment_menu.xml Created by Yamin Siahmargooei at 2022/1/20
   ~     This file is part of Owl.
   ~     Copyright (C) 2022  Yamin Siahmargooei
   ~
@@ -18,18 +18,17 @@
   ~     along with Owl.  If not, see <https://www.gnu.org/licenses/>.
   -->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_coordinator"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/main_container"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <item
+        android:id="@+id/search_menu_about"
+        android:icon="@drawable/ic_contact_support"
+        android:title="@string/about"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/search_menu_settings"
+        android:icon="@drawable/ic_settings_applications"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom" />
+</menu>

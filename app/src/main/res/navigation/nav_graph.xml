@@ -33,7 +33,11 @@
         android:id="@+id/searchFragment"
         android:name="io.github.yamin8000.owl.search.SearchFragment"
         android:label="SearchFragment"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_aboutModal"
+            app:destination="@id/aboutModal" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="io.github.yamin8000.owl.ui.SplashFragment"
@@ -43,4 +47,9 @@
             android:id="@+id/action_splashFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/aboutModal"
+        android:name="io.github.yamin8000.owl.ui.modal.AboutModal"
+        android:label="AboutModal"
+        tools:layout="@layout/about_modal" />
 </navigation>

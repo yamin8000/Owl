@@ -28,6 +28,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/search_fragment_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/search_fragment_menu" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/searchInput"
             style="@style/Widget.Material3.TextInputLayout.FilledBox"
@@ -41,6 +53,7 @@
                 android:id="@+id/searchEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/samimbold"
                 android:hint="@string/search_word"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
@@ -79,6 +92,7 @@
                     android:id="@+id/basicInfoPlaceHolder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/samimbold"
                     android:text="@string/word_and_pronunciation" />
 
                 <TextView
@@ -117,7 +131,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:orientation="vertical"
             app:constraint_referenced_ids="searchInput,searchProgress,basicInfoCard,recyclerView"
@@ -126,7 +140,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/search_fragment_toolbar" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
