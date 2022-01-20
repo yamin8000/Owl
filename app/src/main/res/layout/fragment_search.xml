@@ -96,6 +96,20 @@
                     android:text="@string/word_and_pronunciation" />
 
                 <TextView
+                    android:id="@+id/wordText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_back"
+                    android:checkable="false"
+                    android:clickable="true"
+                    android:drawablePadding="4dp"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:minHeight="48dp"
+                    app:drawableStartCompat="@drawable/ic_form_text"
+                    tools:text="@tools:sample/lorem" />
+
+                <TextView
                     android:id="@+id/pronunciationText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -109,19 +123,6 @@
                     app:drawableStartCompat="@drawable/ic_person_voice"
                     tools:text="@tools:sample/lorem" />
 
-                <TextView
-                    android:id="@+id/wordText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ripple_back"
-                    android:checkable="false"
-                    android:clickable="true"
-                    android:drawablePadding="4dp"
-                    android:focusable="true"
-                    android:gravity="center_vertical"
-                    android:minHeight="48dp"
-                    app:drawableStartCompat="@drawable/ic_form_text"
-                    tools:text="@tools:sample/lorem" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
