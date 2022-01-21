@@ -21,6 +21,7 @@
 package io.github.yamin8000.owl.search.list
 
 import android.content.ClipboardManager
+import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +29,7 @@ import coil.load
 import io.github.yamin8000.owl.R
 import io.github.yamin8000.owl.databinding.DefinitionItemBinding
 import io.github.yamin8000.owl.model.Definition
+import io.github.yamin8000.owl.util.TtsEngine
 import io.github.yamin8000.owl.util.Utility.copyToClipBoard
 import io.github.yamin8000.owl.util.Utility.getShimmer
 import io.github.yamin8000.owl.util.ViewUtility.gone
@@ -37,27 +39,36 @@ import io.github.yamin8000.owl.util.ViewUtility.visible
 class DefinitionListHolder(private val binding: DefinitionItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
+    private val context = binding.root.context
+    private val clipboardManager = context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+    private val tts = TtsEngine(context)
+
     init {
-        createLongClickListeners()
+        createClickListeners()
     }
 
-    private fun createLongClickListeners() {
-        binding.root.context?.let { context ->
-            val clipboardManager = context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-            listOf(
-                binding.emojiText,
-                binding.typeText,
-                binding.exampleText,
-                binding.definitionText
-            ).forEach { textView ->
-                textView.setOnLongClickListener {
-                    copyToClipBoard(textView.text.toString(), clipboardManager)
-                    Toast.makeText(context,
-                        context.getString(R.string.text_copied), Toast.LENGTH_SHORT).show()
-                    true
-                }
+    private fun createClickListeners() {
+        listOf(
+            binding.emojiText,
+            binding.typeText,
+            binding.exampleText,
+            binding.definitionText
+        ).forEach { textView ->
+            textView.setOnLongClickListener {
+                createSingleLongClickListener(textView.text.toString(), context)
+                true
             }
+            textView.setOnClickListener { tts.speak(textView.text.toString()) }
         }
+    }
+
+    private fun createSingleLongClickListener(text: String, context: Context) {
+        copyToClipBoard(text, clipboardManager)
+        Toast.makeText(
+            context,
+            context.getString(R.string.text_copied),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     fun initView(definition: Definition) {

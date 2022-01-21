@@ -99,3 +99,4 @@ lint/tmp/
 /.gradle/
 /.idea/
 /build/
+/app/release/

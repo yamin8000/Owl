@@ -24,6 +24,7 @@ import android.content.ClipboardManager
 import android.content.Context.CLIPBOARD_SERVICE
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.orhanobut.logger.Logger
@@ -35,6 +36,7 @@ import io.github.yamin8000.owl.network.Web
 import io.github.yamin8000.owl.network.Web.asyncResponse
 import io.github.yamin8000.owl.search.list.DefinitionListAdapter
 import io.github.yamin8000.owl.ui.BaseFragment
+import io.github.yamin8000.owl.util.TtsEngine
 import io.github.yamin8000.owl.util.Utility.copyToClipBoard
 import io.github.yamin8000.owl.util.Utility.handleCrash
 import io.github.yamin8000.owl.util.ViewUtility.gone
@@ -48,11 +50,24 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>({ FragmentSearchBindi
         super.onViewCreated(view, savedInstanceState)
 
         try {
-            copyToClipboardLongClickListener()
             binding.searchInput.setStartIconOnClickListener { searchWord() }
+            binding.searchEdit.setOnEditorActionListener { _, _, keyEvent ->
+                if (keyEvent.action == EditorInfo.IME_ACTION_SEARCH) searchWord()
+                true
+            }
+            copyToClipboardLongClickListener()
             toolbarMenuHandler()
+            ttsHandler()
         } catch (e: Exception) {
             handleCrash(e)
+        }
+    }
+
+    private fun ttsHandler() {
+        context?.let {
+            val tts = TtsEngine(it)
+            binding.wordText.setOnClickListener { tts.speak(binding.wordText.text.toString()) }
+            binding.pronunciationText.setOnClickListener { tts.speak(binding.pronunciationText.text.toString()) }
         }
     }
 
@@ -60,14 +75,15 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>({ FragmentSearchBindi
         binding.searchFragmentToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.search_menu_about -> findNavController().navigate(R.id.action_searchFragment_to_aboutModal)
-                R.id.search_menu_settings -> {
-                    context?.let {
-                        Toast.makeText(it, "به زودی", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                }
+                R.id.search_menu_settings -> showNotImplementedFeature()
             }
             true
+        }
+    }
+
+    private fun showNotImplementedFeature() {
+        context?.let {
+            Toast.makeText(it, "به زودی", Toast.LENGTH_SHORT).show()
         }
     }
 
