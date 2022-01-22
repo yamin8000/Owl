@@ -51,8 +51,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>({ FragmentSearchBindi
 
         try {
             binding.searchInput.setStartIconOnClickListener { searchWord() }
-            binding.searchEdit.setOnEditorActionListener { _, _, keyEvent ->
-                if (keyEvent.action == EditorInfo.IME_ACTION_SEARCH) searchWord()
+            binding.searchEdit.setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) searchWord()
                 true
             }
             copyToClipboardLongClickListener()
