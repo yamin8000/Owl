@@ -21,11 +21,12 @@
 package io.github.yamin8000.owl.model
 
 import com.google.gson.annotations.SerializedName
+import io.github.yamin8000.owl.util.Constants.IMAGE_URL
 
 data class Definition(
     val type: String?,
     val definition: String,
     val example: String?,
-    @SerializedName("image_url") val imageUrl: String?,
+    @SerializedName(IMAGE_URL) val imageUrl: String?,
     val emoji: String?
 )

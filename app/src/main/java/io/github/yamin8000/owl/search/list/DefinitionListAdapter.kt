@@ -26,14 +26,15 @@ import androidx.recyclerview.widget.RecyclerView
 import io.github.yamin8000.owl.databinding.DefinitionItemBinding
 import io.github.yamin8000.owl.model.Definition
 
-class DefinitionListAdapter : RecyclerView.Adapter<DefinitionListHolder>() {
+class DefinitionListAdapter(private val imageClickListener: (String) -> Unit) :
+    RecyclerView.Adapter<DefinitionListHolder>() {
 
     private val list = mutableListOf<Definition>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefinitionListHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = DefinitionItemBinding.inflate(inflater, parent, false)
-        return DefinitionListHolder(binding)
+        return DefinitionListHolder(binding, imageClickListener)
     }
 
     override fun onBindViewHolder(holder: DefinitionListHolder, position: Int) {

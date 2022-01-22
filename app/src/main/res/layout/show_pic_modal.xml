@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~     Owl: an android app for Owlbot Dictionary API
+  ~     show_pic_modal.xml Created by Yamin Siahmargooei at 2022/1/22
+  ~     This file is part of Owl.
+  ~     Copyright (C) 2022  Yamin Siahmargooei
+  ~
+  ~     Owl is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     Owl is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with Owl.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="32dp">
+
+    <ImageView
+        android:id="@+id/modal_image"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:contentDescription="@string/image"
+        android:scaleType="fitCenter"
+        tools:layout_conversion_absoluteHeight="128dp"
+        tools:layout_conversion_absoluteWidth="347dp"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="32dp"
+        tools:srcCompat="@tools:sample/avatars" />
+</FrameLayout>

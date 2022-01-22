@@ -52,4 +52,9 @@
         android:name="io.github.yamin8000.owl.ui.modal.AboutModal"
         android:label="AboutModal"
         tools:layout="@layout/about_modal" />
+    <dialog
+        android:id="@+id/showSinglePicModal"
+        android:name="io.github.yamin8000.owl.ui.modal.ShowSinglePicModal"
+        android:label="ShowSinglePicModal"
+        tools:layout="@layout/show_pic_modal" />
 </navigation>

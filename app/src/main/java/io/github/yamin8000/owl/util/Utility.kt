@@ -23,6 +23,10 @@ package io.github.yamin8000.owl.util
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.graphics.drawable.Drawable
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -33,6 +37,13 @@ import io.github.yamin8000.owl.R
 import io.github.yamin8000.owl.util.Constants.STACKTRACE
 
 object Utility {
+
+    fun Fragment.toast(text: String, length: Int = Toast.LENGTH_SHORT) {
+        this.context.let {
+            Toast.makeText(it, text, length).show()
+        }
+    }
+
     /**
      * Handle soft crashes, that are suppressed using try-catch
      *
@@ -72,5 +83,30 @@ object Utility {
     ) {
         val clip = ClipData.newPlainText(text, text)
         clipboardManager.setPrimaryClip(clip)
+    }
+
+    /**
+     * Hide keyboard inside fragment
+     *
+     * since this is not my code and looks shady
+     *
+     * I don't know about any errors that can happen
+     *
+     * so it's wrapped inside try/catch
+     *
+     */
+    fun Fragment.hideKeyboard() {
+        try {
+            val activity = this.activity
+            if (activity != null) {
+                val imm =
+                    activity.getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE) as InputMethodManager
+                var view = activity.currentFocus
+                if (view == null) view = View(activity)
+                imm.hideSoftInputFromWindow(view.windowToken, 0)
+            }
+        } catch (exception: Exception) {
+            handleCrash(exception)
+        }
     }
 }

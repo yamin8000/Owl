@@ -47,4 +47,7 @@
     <string name="tts_not_ready">سیستم تبدیل متن به گفتار آماده نیست، لطفا دوباره تلاش کنید.</string>
     <string name="tts_failed">خطا در تبدیل متن به گفتار</string>
     <string name="tts_english_not_supported">سیستم تبدیل متن به گفتار دستگاه شما از زبان انگلیسی پشتیبانی نمیکند</string>
+    <string name="image">تصویر</string>
+    <string name="very_soon">به زودی</string>
+    <string name="please_enter_text">لطفا عبارتی بنویسید</string>
 </resources>

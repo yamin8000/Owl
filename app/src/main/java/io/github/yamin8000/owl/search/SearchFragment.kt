@@ -26,6 +26,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.orhanobut.logger.Logger
 import io.github.yamin8000.owl.R
@@ -36,9 +37,12 @@ import io.github.yamin8000.owl.network.Web
 import io.github.yamin8000.owl.network.Web.asyncResponse
 import io.github.yamin8000.owl.search.list.DefinitionListAdapter
 import io.github.yamin8000.owl.ui.BaseFragment
+import io.github.yamin8000.owl.util.Constants.IMAGE_URL
 import io.github.yamin8000.owl.util.TtsEngine
 import io.github.yamin8000.owl.util.Utility.copyToClipBoard
 import io.github.yamin8000.owl.util.Utility.handleCrash
+import io.github.yamin8000.owl.util.Utility.hideKeyboard
+import io.github.yamin8000.owl.util.Utility.toast
 import io.github.yamin8000.owl.util.ViewUtility.gone
 import io.github.yamin8000.owl.util.ViewUtility.handleViewDataNullity
 import io.github.yamin8000.owl.util.ViewUtility.visible
@@ -83,15 +87,16 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>({ FragmentSearchBindi
 
     private fun showNotImplementedFeature() {
         context?.let {
-            Toast.makeText(it, "به زودی", Toast.LENGTH_SHORT).show()
+            Toast.makeText(it, getString(R.string.very_soon), Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun searchWord() {
-        val input = binding.searchEdit.text.toString()
-        createSearchWordRequest(input)
-
-        binding.searchProgress.visible()
+        val input = binding.searchEdit.text.toString().trim()
+        if (input.isNotBlank()) {
+            createSearchWordRequest(input)
+            binding.searchProgress.visible()
+        } else toast(getString(R.string.please_enter_text))
     }
 
     private fun createSearchWordRequest(input: String) {
@@ -108,28 +113,31 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>({ FragmentSearchBindi
 
     private fun handleException(throwable: Throwable) {
         Logger.d(throwable.stackTraceToString())
-        context?.let {
-            Toast.makeText(
-                it,
-                getString(R.string.general_net_error),
-                Toast.LENGTH_LONG
-            ).show()
-        }
+        toast(getString(R.string.general_net_error), Toast.LENGTH_LONG)
         binding.searchProgress.gone()
     }
 
     private fun handleOkResponseBody(body: Word) {
+        hideKeyboard()
         binding.basicInfoCard.visible()
         binding.wordText.handleViewDataNullity(body.word)
         binding.pronunciationText.handleViewDataNullity(body.pronunciation)
 
-        val adapter = DefinitionListAdapter()
+        val adapter = DefinitionListAdapter(this::imageClickListener)
         binding.recyclerView.adapter = adapter
         body.definitions.forEachIndexed { index, definition ->
             adapter.addItem(definition)
             adapter.notifyItemInserted(index)
         }
         binding.searchProgress.gone()
+    }
+
+    private fun imageClickListener(imageUrl: String) {
+        findNavController().navigate(
+            R.id.showSinglePicModal, bundleOf(
+                IMAGE_URL to imageUrl
+            )
+        )
     }
 
     private fun handleNullResponseBody(code: Int) {
@@ -139,7 +147,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>({ FragmentSearchBindi
             429 -> getString(R.string.api_throttled)
             else -> getString(R.string.general_net_error)
         }
-        context?.let { Toast.makeText(it, message, Toast.LENGTH_LONG).show() }
+        toast(message, Toast.LENGTH_LONG)
         binding.searchProgress.gone()
     }
 
@@ -148,7 +156,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>({ FragmentSearchBindi
             context?.let {
                 val clipboardManager = it.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
                 copyToClipBoard(binding.pronunciationText.text.toString(), clipboardManager)
-                Toast.makeText(it, getString(R.string.text_copied), Toast.LENGTH_SHORT).show()
+                toast(getString(R.string.text_copied))
             }
             true
         }

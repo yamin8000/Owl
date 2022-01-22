@@ -36,7 +36,10 @@ import io.github.yamin8000.owl.util.ViewUtility.gone
 import io.github.yamin8000.owl.util.ViewUtility.handleViewDataNullity
 import io.github.yamin8000.owl.util.ViewUtility.visible
 
-class DefinitionListHolder(private val binding: DefinitionItemBinding) :
+class DefinitionListHolder(
+    private val binding: DefinitionItemBinding,
+    private val imageClickListener: (String) -> Unit
+) :
     RecyclerView.ViewHolder(binding.root) {
 
     private val context = binding.root.context
@@ -81,8 +84,14 @@ class DefinitionListHolder(private val binding: DefinitionItemBinding) :
     }
 
     private fun handleImage(imageUrl: String?) {
-        if (imageUrl == null) binding.wordImage.gone()
-        else loadImageView(imageUrl)
+        if (imageUrl != null) {
+            loadImageView(imageUrl)
+            createImageClickListener(imageUrl)
+        } else binding.wordImage.gone()
+    }
+
+    private fun createImageClickListener(imageUrl: String) {
+        binding.wordImage.setOnClickListener { imageClickListener(imageUrl) }
     }
 
     private fun loadImageView(imageUrl: String) {

@@ -23,4 +23,5 @@ package io.github.yamin8000.owl.util
 object Constants {
     const val LOG_TAG = "<-->"
     const val STACKTRACE = "stacktrace"
+    const val IMAGE_URL = "image_url"
 }
