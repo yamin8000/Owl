@@ -18,7 +18,9 @@
 
 ## Preview
 
-WIP
+![preview](./screenshots/1.0.0/Screenshot_20220207-203650.png)
+
+[more here](./screenshots)
 
 ## Compatibility
 
@@ -26,7 +28,7 @@ WIP
 
 ## Usage
 
-WIP
+Just use the search input to search the word.
 
 ## Download
 
@@ -35,11 +37,16 @@ WIP
 
 ## Features
 
-WIP
+- English to English dictionary
+- Definition of the word
+- Example of the word usage if available
+- Emoji of the word if available
+- Picture of the word if available
+- Pronunciation of the word, both IPA text and audio using TTS
 
 ## Changelog
 
-WIP
+- **1.0.0** First release
 
 ## License
 
