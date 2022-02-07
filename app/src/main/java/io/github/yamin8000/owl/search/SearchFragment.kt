@@ -26,6 +26,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.orhanobut.logger.Logger
@@ -54,6 +55,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>({ FragmentSearchBindi
         super.onViewCreated(view, savedInstanceState)
 
         try {
+            backPressHandler()
+
             binding.searchInput.setStartIconOnClickListener { searchWord() }
             binding.searchEdit.setOnEditorActionListener { _, actionId, _ ->
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) searchWord()
@@ -160,5 +163,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>({ FragmentSearchBindi
             }
             true
         }
+    }
+
+    private fun backPressHandler() {
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.exitNoticeModal)
+            }
+        }
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, callback)
     }
 }

@@ -1,6 +1,6 @@
 /*
  *     Owl: an android app for Owlbot Dictionary API
- *     SplashFragment.kt Created by Yamin Siahmargooei at 2022/1/16
+ *     ExitNoticeModal.kt Created by Yamin Siahmargooei at 2022/2/7
  *     This file is part of Owl.
  *     Copyright (C) 2022  Yamin Siahmargooei
  *
@@ -18,30 +18,30 @@
  *     along with Owl.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.yamin8000.owl.ui
+package io.github.yamin8000.owl.ui.modal
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.view.LayoutInflater
 import android.view.View
-import androidx.activity.OnBackPressedCallback
-import androidx.core.os.postDelayed
-import androidx.navigation.fragment.findNavController
-import com.orhanobut.logger.Logger
-import io.github.yamin8000.owl.R
-import io.github.yamin8000.owl.databinding.FragmentSplashBinding
+import android.view.ViewGroup
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import io.github.yamin8000.owl.databinding.ExitNoticeModalBinding
 
-class SplashFragment : BaseFragment<FragmentSplashBinding>({ FragmentSplashBinding.inflate(it) }) {
+class ExitNoticeModal : BottomSheetDialogFragment() {
+
+    private val binding: ExitNoticeModalBinding by lazy(LazyThreadSafetyMode.NONE) {
+        ExitNoticeModalBinding.inflate(layoutInflater)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        bundle: Bundle?
+    ) = binding.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        try {
-            Handler(Looper.getMainLooper()).postDelayed(1500) {
-                findNavController().navigate(R.id.action_splashFragment_to_searchFragment)
-            }
-        } catch (e: Exception) {
-            Logger.d(e.stackTraceToString())
-        }
+        binding.exitNoticeButton.setOnClickListener { activity?.finish() }
     }
 }

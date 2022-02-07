@@ -19,7 +19,7 @@
   -->
 
 <resources>
-    <string name="app_name">Owl</string>
+    <string name="app_name">جغدک</string>
     <string name="app_crashed">مشکلی در برنامه پیش آمده، برای خروج اینجا را لمس کنید.</string>
     <string name="search_word">جستجوی کلمه</string>
     <string name="word_image">تصویر کلمه</string>
@@ -50,4 +50,6 @@
     <string name="image">تصویر</string>
     <string name="very_soon">به زودی</string>
     <string name="please_enter_text">لطفا عبارتی بنویسید</string>
+    <string name="exit">خروج</string>
+    <string name="exit_prompt">آیا واقعا میخواهید خارج شوید؟</string>
 </resources>
