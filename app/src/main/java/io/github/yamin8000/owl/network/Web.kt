@@ -78,7 +78,7 @@ object Web {
             }
 
             override fun onFailure(call: Call<T>, t: Throwable) {
-                if (isCanceled) Logger.d("${call.request().url()} is canceled")
+                if (isCanceled) Logger.d("${call.request().url} is canceled")
                 onFail(t)
             }
         })
@@ -110,7 +110,7 @@ object Web {
             override fun onResponse(call: Call<T>, response: Response<T>) = onSuccess(response)
 
             override fun onFailure(call: Call<T>, t: Throwable) {
-                if (isCanceled) Logger.d("${call.request().url()} is canceled")
+                if (isCanceled) Logger.d("${call.request().url} is canceled")
                 onFail(t)
             }
         })
