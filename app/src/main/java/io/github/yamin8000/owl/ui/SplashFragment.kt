@@ -24,24 +24,48 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import androidx.activity.OnBackPressedCallback
 import androidx.core.os.postDelayed
 import androidx.navigation.fragment.findNavController
-import com.orhanobut.logger.Logger
 import io.github.yamin8000.owl.R
 import io.github.yamin8000.owl.databinding.FragmentSplashBinding
+import io.github.yamin8000.owl.util.Utility.handleCrash
 
 class SplashFragment : BaseFragment<FragmentSplashBinding>({ FragmentSplashBinding.inflate(it) }) {
+
+    private val splashDelay = 1500L
+    private lateinit var handler: Handler
+    private var isSplashShown = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         try {
-            Handler(Looper.getMainLooper()).postDelayed(1500) {
-                findNavController().navigate(R.id.action_splashFragment_to_searchFragment)
+            handler = Handler(Looper.getMainLooper())
+            handler.postDelayed(splashDelay) {
+                navigateToSearchFragment()
             }
-        } catch (e: Exception) {
-            Logger.d(e.stackTraceToString())
+        } catch (exception: Exception) {
+            handleCrash(exception)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        isSplashShown = true
+        if (this::handler.isInitialized)
+            handler.removeCallbacksAndMessages(null)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (isSplashShown)
+            navigateToSearchFragment()
+    }
+
+    private fun navigateToSearchFragment() {
+        if (!this.isDetached) {
+            findNavController().navigate(R.id.action_splashFragment_to_searchFragment)
         }
     }
 }
